@@ -3,351 +3,374 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Durga Puja 2026 Countdown | Shubho Durgotsav</title>
-<meta name="description" content="Live countdown to Durga Puja 2026 — Maha Shashthi on 16 October 2026. Full schedule of Durgotsav days.">
+<title>Durga Puja 2026 · Countdown</title>
+<meta name="description" content="Live animated countdown to Durga Puja 2026 — Durgotsav, 16-21 October 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Noto+Serif+Bengali:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --deep-red: #7a0c0c;
-    --maroon: #5c0808;
-    --gold: #f5c542;
-    --gold-soft: #ffe08a;
-    --cream: #fff8ec;
-    --shadow: rgba(0,0,0,.35);
+  :root{
+    --bg1:#0d0208; --bg2:#1a0510; --bg3:#2b0a17;
+    --gold:#f6c453; --gold2:#ffe9a8; --gold-dim:rgba(246,196,83,.35);
+    --red:#ff4d5e; --red-deep:#c9184a;
+    --cream:#fff4e0;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Georgia', 'Times New Roman', serif;
-    background: radial-gradient(ellipse at 50% -20%, #a31515 0%, var(--deep-red) 40%, var(--maroon) 100%);
-    color: var(--cream);
-    min-height: 100vh;
-    overflow-x: hidden;
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg1);
+    color:var(--cream);
+    overflow-x:hidden;
   }
 
-  /* Decorative top border like a Banarasi saree edge */
-  .saree-strip {
-    height: 14px;
-    background: repeating-linear-gradient(90deg,
-      var(--gold) 0 20px, #b8860b 20px 24px, var(--deep-red) 24px 30px, #b8860b 30px 34px);
-    border-bottom: 3px solid var(--gold);
+  /* ===== animated aurora background ===== */
+  .aurora{position:fixed;inset:0;z-index:0;overflow:hidden;background:
+    radial-gradient(ellipse at 50% 120%, #4d0f22 0%, transparent 60%),
+    linear-gradient(180deg,var(--bg1),var(--bg2) 60%,var(--bg3));}
+  .blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;mix-blend-mode:screen;animation:drift 16s ease-in-out infinite alternate}
+  .blob.b1{width:52vw;height:52vw;left:-12vw;top:-10vh;background:radial-gradient(circle,#8a1030,transparent 70%)}
+  .blob.b2{width:44vw;height:44vw;right:-10vw;top:20vh;background:radial-gradient(circle,#5c1a02,transparent 70%);animation-delay:-5s}
+  .blob.b3{width:40vw;height:40vw;left:20vw;bottom:-18vh;background:radial-gradient(circle,#7a0c2a,transparent 70%);animation-delay:-10s}
+  @keyframes drift{from{transform:translate(0,0) scale(1)}to{transform:translate(6vw,-4vh) scale(1.15)}}
+  #petals{position:fixed;inset:0;z-index:1;pointer-events:none}
+
+  .wrap{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:0 20px}
+
+  /* ===== hero / art ===== */
+  .hero{display:flex;flex-direction:column;align-items:center;padding-top:56px;text-align:center}
+  .art{position:relative;width:min(78vw,420px);height:min(78vw,420px);display:grid;place-items:center}
+  .mandala{position:absolute;inset:0;animation:spin 60s linear infinite}
+  .mandala.rev{animation:spin 90s linear infinite reverse}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .halo{position:absolute;inset:12%;border-radius:50%;
+    background:radial-gradient(circle,rgba(246,196,83,.22),rgba(255,77,94,.10) 45%,transparent 70%);
+    animation:pulse 4.5s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(.96);opacity:.75}50%{transform:scale(1.05);opacity:1}}
+  .trishul{position:relative;width:44%;filter:drop-shadow(0 0 14px rgba(246,196,83,.55))}
+
+  .bn-title{
+    font-family:'Noto Serif Bengali',serif;font-weight:800;
+    font-size:clamp(2.6rem,7.5vw,4.6rem);
+    background:linear-gradient(180deg,#fff8e1,var(--gold) 55%,#b8860b);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    text-shadow:0 0 40px rgba(246,196,83,.25);
+    margin-top:26px;line-height:1.15;
+  }
+  .en-title{
+    font-family:'Cinzel Decorative',serif;font-weight:700;
+    font-size:clamp(.95rem,2.6vw,1.35rem);letter-spacing:.45em;text-indent:.45em;
+    color:var(--gold2);margin-top:6px;text-transform:uppercase;
+  }
+  .shloka{
+    margin-top:18px;font-style:italic;font-weight:300;color:rgba(255,244,224,.8);
+    font-size:clamp(.85rem,2.2vw,1rem);max-width:560px;
+  }
+  .shloka b{color:var(--gold);font-weight:600}
+
+  /* ===== countdown ===== */
+  .cd-section{margin-top:44px}
+  .cd-label{
+    text-align:center;letter-spacing:.28em;text-transform:uppercase;
+    font-size:.72rem;color:var(--gold);margin-bottom:18px;
+  }
+  .cd-row{display:flex;justify-content:center;gap:clamp(10px,2.5vw,22px);flex-wrap:wrap}
+  .cd-card{
+    width:clamp(80px,19vw,150px);padding:20px 6px 14px;border-radius:20px;text-align:center;
+    background:linear-gradient(160deg,rgba(255,244,224,.08),rgba(255,244,224,.02));
+    border:1px solid var(--gold-dim);
+    box-shadow:0 12px 34px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,244,224,.12);
+    backdrop-filter:blur(8px);
+    transition:transform .3s;
+  }
+  .cd-card:hover{transform:translateY(-5px)}
+  .cd-num{
+    font-family:'Cinzel Decorative',serif;font-weight:900;
+    font-size:clamp(2.1rem,7vw,4rem);line-height:1;color:var(--gold);
+    text-shadow:0 0 24px rgba(246,196,83,.45);
+    font-variant-numeric:tabular-nums;
+  }
+  .cd-num.pop{animation:pop .45s ease}
+  @keyframes pop{35%{transform:scale(1.18);color:#fff}}
+  .cd-sub{margin-top:9px;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,244,224,.75)}
+
+  .progress-wrap{max-width:520px;margin:34px auto 0}
+  .progress-txt{display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,244,224,.6);margin-bottom:7px}
+  .progress{height:4px;border-radius:99px;background:rgba(255,244,224,.12);overflow:hidden}
+  .progress > i{display:block;height:100%;width:0%;border-radius:99px;
+    background:linear-gradient(90deg,var(--red),var(--gold));box-shadow:0 0 12px rgba(246,196,83,.7);
+    transition:width 1s ease}
+
+  .banner{
+    display:none;margin:26px auto 0;max-width:620px;padding:22px 24px;border-radius:18px;
+    background:linear-gradient(120deg,#f6c453,#ffe9a8,#f6c453);color:#3d060f;
+    font-family:'Cinzel Decorative',serif;font-weight:700;font-size:clamp(1.05rem,3.4vw,1.5rem);
+    box-shadow:0 14px 44px rgba(246,196,83,.35);animation:pop .6s ease;
   }
 
-  .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 40px 20px 60px;
-    text-align: center;
+  /* ===== schedule timeline ===== */
+  .schedule{margin-top:76px}
+  .sec-title{
+    text-align:center;font-family:'Cinzel Decorative',serif;font-weight:700;
+    color:var(--gold);letter-spacing:.3em;text-transform:uppercase;
+    font-size:clamp(1rem,3vw,1.4rem);margin-bottom:38px;
   }
+  .sec-title::after{content:"";display:block;width:90px;height:2px;margin:14px auto 0;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .timeline{position:relative;padding-left:34px}
+  .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(180deg,transparent,var(--gold-dim) 12%,var(--gold-dim) 88%,transparent)}
+  .t-item{position:relative;padding:16px 20px;margin-bottom:18px;border-radius:16px;
+    background:linear-gradient(160deg,rgba(255,244,224,.06),rgba(255,244,224,.015));
+    border:1px solid rgba(246,196,83,.18);
+    transition:transform .25s,border-color .25s}
+  .t-item:hover{transform:translateX(6px);border-color:var(--gold-dim)}
+  .t-item::before{content:"";position:absolute;left:-31px;top:26px;width:12px;height:12px;border-radius:50%;
+    background:var(--bg1);border:2px solid var(--gold);box-shadow:0 0 10px rgba(246,196,83,.5)}
+  .t-item.today{
+    border-color:var(--gold);background:linear-gradient(160deg,rgba(246,196,83,.14),rgba(255,77,94,.06));
+    box-shadow:0 0 26px rgba(246,196,83,.22);
+  }
+  .t-item.today::before{background:var(--gold);animation:pulse 1.6s infinite}
+  .t-item.today .today-tag{display:inline-block}
+  .today-tag{display:none;margin-left:8px;font-size:.58rem;letter-spacing:.22em;color:#3d060f;
+    background:linear-gradient(90deg,var(--gold),var(--gold2));padding:3px 9px;border-radius:99px;vertical-align:middle}
+  .t-date{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2)}
+  .t-name{font-size:1.12rem;font-weight:600;margin-top:3px}
+  .t-desc{font-size:.84rem;font-weight:300;color:rgba(255,244,224,.72);margin-top:4px;line-height:1.55}
 
-  .bengali-title {
-    font-size: clamp(2.2rem, 6vw, 4rem);
-    color: var(--gold);
-    text-shadow: 0 2px 12px var(--shadow);
-    letter-spacing: 2px;
-  }
+  /* ===== diyas ===== */
+  .diya-row{display:flex;justify-content:center;gap:26px;margin-top:80px}
+  .diya{width:54px;text-align:center}
+  .flame{width:14px;height:24px;margin:0 auto;border-radius:50% 50% 50% 50%/62% 62% 38% 38%;
+    background:radial-gradient(circle at 50% 78%,#fff7d6 0%,#ffd166 40%,#ff8f3d 72%,rgba(255,90,0,0) 100%);
+    transform-origin:50% 100%;animation:flick .7s ease-in-out infinite alternate;
+    filter:drop-shadow(0 0 10px rgba(255,166,60,.85))}
+  .flame.f2{animation-delay:-.25s}.flame.f3{animation-delay:-.5s}.flame.f4{animation-delay:-.15s}.flame.f5{animation-delay:-.4s}
+  @keyframes flick{from{transform:scaleY(1) scaleX(1)}to{transform:scaleY(1.25) scaleX(.88) rotate(2deg)}}
+  .diya-body{width:54px;height:20px;margin-top:-3px;border-radius:0 0 26px 26px/0 0 18px 18px;
+    background:linear-gradient(180deg,#a34a1e,#6e2711);position:relative}
+  .diya-body::after{content:"";position:absolute;left:50%;top:-4px;transform:translateX(-50%);
+    width:22px;height:6px;border-radius:50%;background:#ffb703}
 
-  h1.english-title {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    font-weight: normal;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: var(--gold-soft);
-    margin: 8px 0 6px;
-  }
+  footer{margin-top:52px;padding:0 0 54px;text-align:center;font-weight:300;font-size:.8rem;color:rgba(255,244,224,.55)}
+  footer .asche{font-family:'Noto Serif Bengali',serif;color:var(--gold);font-size:1rem}
+  footer a{color:var(--gold2);text-decoration:none}
 
-  .subtitle {
-    font-style: italic;
-    opacity: .9;
-    margin-bottom: 36px;
-    font-size: 1.05rem;
-  }
-
-  /* Trishul divider */
-  .divider {
-    display: flex; align-items: center; justify-content: center;
-    gap: 14px; margin: 26px 0;
-  }
-  .divider .line {
-    height: 1px; width: 120px;
-    background: linear-gradient(90deg, transparent, var(--gold));
-  }
-  .divider .line.right { background: linear-gradient(90deg, var(--gold), transparent); }
-  .divider .diamond {
-    width: 12px; height: 12px; background: var(--gold);
-    transform: rotate(45deg);
-    box-shadow: 0 0 14px rgba(245,197,66,.8);
-  }
-
-  .countdown-heading {
-    font-size: 1.15rem;
-    letter-spacing: 2px;
-    color: var(--gold-soft);
-    margin-bottom: 18px;
-  }
-
-  .countdown {
-    display: flex;
-    justify-content: center;
-    gap: clamp(10px, 3vw, 28px);
-    flex-wrap: wrap;
-  }
-
-  .cd-box {
-    background: rgba(0,0,0,.28);
-    border: 1px solid rgba(245,197,66,.45);
-    border-radius: 14px;
-    padding: 22px 10px 14px;
-    width: clamp(76px, 20vw, 150px);
-    box-shadow: 0 10px 30px var(--shadow);
-    backdrop-filter: blur(4px);
-  }
-  .cd-num {
-    font-size: clamp(2.4rem, 8vw, 4.5rem);
-    font-weight: bold;
-    color: var(--gold);
-    line-height: 1;
-    font-variant-numeric: tabular-nums;
-    text-shadow: 0 0 22px rgba(245,197,66,.35);
-  }
-  .cd-label {
-    margin-top: 10px;
-    font-size: .8rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--cream);
-    opacity: .85;
-  }
-
-  .festival-banner {
-    display: none;
-    background: linear-gradient(135deg, #f5c542, #ffe08a, #f5c542);
-    color: #5c0808;
-    font-size: clamp(1.4rem, 4vw, 2.2rem);
-    font-weight: bold;
-    padding: 26px 20px;
-    border-radius: 14px;
-    margin: 10px auto 30px;
-    max-width: 640px;
-    box-shadow: 0 10px 30px var(--shadow);
-  }
-
-  .schedule {
-    margin-top: 54px;
-    text-align: left;
-  }
-  .schedule h2 {
-    text-align: center;
-    color: var(--gold);
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 22px;
-  }
-
-  .day-card {
-    display: flex;
-    gap: 16px;
-    align-items: baseline;
-    background: rgba(0,0,0,.22);
-    border: 1px solid rgba(245,197,66,.25);
-    border-radius: 12px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
-    transition: transform .2s;
-  }
-  .day-card:hover { transform: translateX(4px); }
-  .day-card.today {
-    border-color: var(--gold);
-    background: rgba(245,197,66,.12);
-    box-shadow: 0 0 20px rgba(245,197,66,.25);
-  }
-  .day-card.today .day-badge::after {
-    content: " — TODAY";
-    font-size: .65rem;
-    color: var(--gold);
-    letter-spacing: 2px;
-  }
-  .day-date {
-    min-width: 118px;
-    font-weight: bold;
-    color: var(--gold-soft);
-    font-variant-numeric: tabular-nums;
-  }
-  .day-name { font-weight: bold; letter-spacing: 1px; }
-  .day-desc { font-size: .9rem; opacity: .8; margin-top: 3px; font-style: italic; }
-
-  footer {
-    margin-top: 50px;
-    font-size: .85rem;
-    opacity: .7;
-    font-style: italic;
-  }
-  footer .asche { color: var(--gold-soft); }
-
-  /* Diya glow dots */
-  .diyas {
-    position: fixed;
-    bottom: -6px; left: 0; right: 0;
-    height: 8px;
-    background: radial-gradient(circle at 10% 0, rgba(255,170,60,.8) 0 3px, transparent 4px),
-                radial-gradient(circle at 30% 0, rgba(255,200,80,.8) 0 3px, transparent 4px),
-                radial-gradient(circle at 50% 0, rgba(255,170,60,.8) 0 3px, transparent 4px),
-                radial-gradient(circle at 70% 0, rgba(255,200,80,.8) 0 3px, transparent 4px),
-                radial-gradient(circle at 90% 0, rgba(255,170,60,.8) 0 3px, transparent 4px);
-    animation: flicker 2.4s infinite alternate;
-    pointer-events: none;
-  }
-  @keyframes flicker {
-    from { opacity: .7; } to { opacity: 1; filter: brightness(1.3); }
+  @media (max-width:520px){
+    .cd-row{gap:8px}
+    .timeline{padding-left:28px}
+    .t-item::before{left:-25px}
   }
 </style>
 </head>
 <body>
-  <div class="saree-strip"></div>
 
-  <div class="container">
-    <div class="bengali-title">দুর্গাপূজা</div>
-    <h1 class="english-title">Durga Puja 2026</h1>
-    <p class="subtitle">“Ya Devi Sarvabhuteshu Shakti Rupena Samsthita”</p>
+<div class="aurora">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+</div>
+<canvas id="petals"></canvas>
 
-    <div class="divider">
-      <span class="line"></span><span class="diamond"></span><span class="line right"></span>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="art" aria-hidden="true">
+      <svg class="mandala" viewBox="0 0 400 400" fill="none">
+        <circle cx="200" cy="200" r="196" stroke="rgba(246,196,83,.35)" stroke-width="1" stroke-dasharray="3 9"/>
+        <circle cx="200" cy="200" r="170" stroke="rgba(246,196,83,.5)" stroke-width="1.5" stroke-dasharray="60 22"/>
+        <circle cx="200" cy="200" r="140" stroke="rgba(255,77,94,.4)" stroke-width="1" stroke-dasharray="2 14"/>
+        <g stroke="rgba(246,196,83,.55)" stroke-width="1.4">
+          <path d="M200 40 A160 160 0 0 1 339 200" opacity=".8"/>
+          <path d="M200 360 A160 160 0 0 1 61 200" opacity=".8"/>
+        </g>
+      </svg>
+      <svg class="mandala rev" viewBox="0 0 400 400" fill="none">
+        <circle cx="200" cy="200" r="120" stroke="rgba(246,196,83,.45)" stroke-width="1" stroke-dasharray="30 18"/>
+        <circle cx="200" cy="200" r="90" stroke="rgba(255,233,168,.3)" stroke-width="1" stroke-dasharray="4 8"/>
+        <g fill="rgba(246,196,83,.75)">
+          <circle cx="200" cy="80" r="3"/><circle cx="320" cy="200" r="3"/><circle cx="200" cy="320" r="3"/><circle cx="80" cy="200" r="3"/>
+          <circle cx="285" cy="115" r="2.4"/><circle cx="285" cy="285" r="2.4"/><circle cx="115" cy="285" r="2.4"/><circle cx="115" cy="115" r="2.4"/>
+        </g>
+      </svg>
+      <div class="halo"></div>
+      <svg class="trishul" viewBox="0 0 200 270" fill="none">
+        <defs>
+          <linearGradient id="gg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff3c4"/><stop offset=".5" stop-color="#f6c453"/><stop offset="1" stop-color="#9a6b0a"/>
+          </linearGradient>
+        </defs>
+        <g stroke="url(#gg)" stroke-linecap="round" fill="none">
+          <path d="M100 16 L100 74" stroke-width="8"/>
+          <path d="M100 16 C 92 34, 84 40, 74 30" stroke-width="3" opacity=".7"/>
+          <path d="M100 16 C 108 34, 116 40, 126 30" stroke-width="3" opacity=".7"/>
+          <path d="M100 78 C 100 52, 64 58, 54 22" stroke-width="7"/>
+          <path d="M100 78 C 100 52, 136 58, 146 22" stroke-width="7"/>
+          <path d="M54 22 C 60 12, 72 10, 78 16" stroke-width="5" opacity=".85"/>
+          <path d="M146 22 C 140 12, 128 10, 122 16" stroke-width="5" opacity=".85"/>
+          <line x1="100" y1="78" x2="100" y2="256" stroke-width="6"/>
+          <path d="M88 250 L112 250" stroke-width="4"/>
+          <path d="M100 92 C 92 104, 92 116, 100 128 C 108 116, 108 104, 100 92 Z" stroke-width="2.5" opacity=".8"/>
+          <path d="M92 148 L108 148 M92 158 L108 158" stroke-width="2.5" opacity=".6"/>
+        </g>
+        <circle cx="100" cy="60" r="5" fill="#ff4d5e">
+          <animate attributeName="opacity" values="1;.55;1" dur="2.2s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
     </div>
 
-    <p class="countdown-heading" id="cdHeading">Maha Shashthi tak bacha hai — 16 October 2026</p>
+    <div class="bn-title">দুর্গাপূজা</div>
+    <div class="en-title">Durga Puja · 2026</div>
+    <p class="shloka">“Ya Devi Sarvabhuteshu <b>Shakti</b> Rupena Samsthita · Namastasye · Namastasye · Namastasye <b>Namah</b>”</p>
+  </header>
 
-    <div class="countdown" id="countdown">
-      <div class="cd-box"><div class="cd-num" id="days">00</div><div class="cd-label">Days</div></div>
-      <div class="cd-box"><div class="cd-num" id="hours">00</div><div class="cd-label">Hours</div></div>
-      <div class="cd-box"><div class="cd-num" id="mins">00</div><div class="cd-label">Minutes</div></div>
-      <div class="cd-box"><div class="cd-num" id="secs">00</div><div class="cd-label">Seconds</div></div>
+  <section class="cd-section">
+    <p class="cd-label" id="cdHeading">Maha Shashthi tak bacha hai · 16 October 2026</p>
+    <div class="cd-row" id="countdown">
+      <div class="cd-card"><div class="cd-num" id="days">00</div><div class="cd-sub">Din</div></div>
+      <div class="cd-card"><div class="cd-num" id="hours">00</div><div class="cd-sub">Ghanta</div></div>
+      <div class="cd-card"><div class="cd-num" id="mins">00</div><div class="cd-sub">Minute</div></div>
+      <div class="cd-card"><div class="cd-num" id="secs">00</div><div class="cd-sub">Second</div></div>
     </div>
 
-    <div class="festival-banner" id="festivalBanner"></div>
+    <div class="progress-wrap">
+      <div class="progress-txt"><span>Mahalaya · 10 Oct</span><span>Visarjan · 21 Oct</span></div>
+      <div class="progress"><i id="progBar"></i></div>
+    </div>
 
-    <section class="schedule">
-      <h2>Durgotsav 2026 Schedule</h2>
+    <div class="banner" id="festivalBanner"></div>
+  </section>
 
-      <div class="day-card" data-date="2026-10-10">
-        <div class="day-date">Sat, 10 Oct</div>
-        <div>
-          <div class="day-name">Mahalaya <span class="day-badge"></span></div>
-          <div class="day-desc">Pitru Paksha ends, Devi Paksha begins — the Goddess begins her journey home.</div>
-        </div>
+  <section class="schedule">
+    <h2 class="sec-title">Durgotsav 2026</h2>
+    <div class="timeline">
+
+      <div class="t-item" data-date="2026-10-10">
+        <div class="t-date">Sat · 10 Oct</div>
+        <div class="t-name">Mahalaya <span class="today-tag">Today</span></div>
+        <div class="t-desc">Pitru Paksha ends, Devi Paksha begins — the Goddess sets out on her journey home.</div>
       </div>
 
-      <div class="day-card" data-date="2026-10-16">
-        <div class="day-date">Fri, 16 Oct</div>
-        <div>
-          <div class="day-name">Maha Shashthi <span class="day-badge"></span></div>
-          <div class="day-desc">Bodhon — the awakening; Kalparambha and the unveiling of the Goddess’ face.</div>
-        </div>
+      <div class="t-item" data-date="2026-10-16">
+        <div class="t-date">Fri · 16 Oct</div>
+        <div class="t-name">Maha Shashthi <span class="today-tag">Today</span></div>
+        <div class="t-desc">Bodhon — the awakening. Kalparambha, and the unveiling of the Goddess’ face at dusk.</div>
       </div>
 
-      <div class="day-card" data-date="2026-10-17">
-        <div class="day-date">Sat, 17 Oct</div>
-        <div>
-          <div class="day-name">Maha Saptami <span class="day-badge"></span></div>
-          <div class="day-desc">Navapatrika (Kola Bou) snan at dawn — the nine plants bathed and installed beside Ganesha.</div>
-        </div>
+      <div class="t-item" data-date="2026-10-17">
+        <div class="t-date">Sat · 17 Oct</div>
+        <div class="t-name">Maha Saptami <span class="today-tag">Today</span></div>
+        <div class="t-desc">Navapatrika (Kola Bou) snan at dawn — nine plants bathed, wrapped in a red-bordered sari, set beside Ganesha.</div>
       </div>
 
-      <div class="day-card" data-date="2026-10-19">
-        <div class="day-date">Mon, 19 Oct</div>
-        <div>
-          <div class="day-name">Maha Ashtami & Maha Navami <span class="day-badge"></span></div>
-          <div class="day-desc">The grandest day — Kumari Puja, Pushpanjali, and Sandhi Puja (10:29–11:17 AM) at the tithi junction.</div>
-        </div>
+      <div class="t-item" data-date="2026-10-19">
+        <div class="t-date">Mon · 19 Oct</div>
+        <div class="t-name">Maha Ashtami & Maha Navami <span class="today-tag">Today</span></div>
+        <div class="t-desc">The grandest day — Kumari Puja, Pushpanjali, and Sandhi Puja (10:29–11:17 AM) at the junction of the tithis.</div>
       </div>
 
-      <div class="day-card" data-date="2026-10-20">
-        <div class="day-date">Tue, 20 Oct</div>
-        <div>
-          <div class="day-name">Vijaya Dashami <span class="day-badge"></span></div>
-          <div class="day-desc">Devi Boron and Sindoor Khela — the Goddess is honoured with vermilion before her farewell.</div>
-        </div>
+      <div class="t-item" data-date="2026-10-20">
+        <div class="t-date">Tue · 20 Oct</div>
+        <div class="t-name">Vijaya Dashami <span class="today-tag">Today</span></div>
+        <div class="t-desc">Devi Boron and Sindoor Khela — vermilion offered to the Goddess and shared among the women.</div>
       </div>
 
-      <div class="day-card" data-date="2026-10-21">
-        <div class="day-date">Wed, 21 Oct</div>
-        <div>
-          <div class="day-name">Visarjan <span class="day-badge"></span></div>
-          <div class="day-desc">The immersion — Durga returns to Kailasa. Shubho Bijoya!</div>
-        </div>
+      <div class="t-item" data-date="2026-10-21">
+        <div class="t-date">Wed · 21 Oct</div>
+        <div class="t-name">Visarjan <span class="today-tag">Today</span></div>
+        <div class="t-desc">The immersion procession — Durga returns to Kailasa. Shubho Bijoya!</div>
       </div>
-    </section>
 
-    <footer>
-      <p class="asche">Asche bochhor abar hobe.</p>
-      <p style="margin-top:6px;">Dates as per the Bengal panchang for 2026. Maha Ashtami and Maha Navami share 19 October this year.</p>
-    </footer>
+    </div>
+  </section>
+
+  <div class="diya-row" aria-hidden="true">
+    <div class="diya"><div class="flame"></div><div class="diya-body"></div></div>
+    <div class="diya"><div class="flame f2"></div><div class="diya-body"></div></div>
+    <div class="diya"><div class="flame f3"></div><div class="diya-body"></div></div>
+    <div class="diya"><div class="flame f4"></div><div class="diya-body"></div></div>
+    <div class="diya"><div class="flame f5"></div><div class="diya-body"></div></div>
   </div>
 
-  <div class="diyas"></div>
+  <footer>
+    <p class="asche">আসছে বছর আবার হবে — Asche bochhor abar hobe.</p>
+    <p style="margin-top:8px">Dates per the Bengal panchang, 2026 · Ashtami & Navami share 19 October · <a href="https://github.com/ca4219248-blip/durga-puja-countdown" target="_blank" rel="noopener">GitHub</a></p>
+  </footer>
+</div>
 
 <script>
-(function () {
-  // Key moments (IST, UTC+5:30)
-  var TARGETS = [
-    { when: new Date("2026-10-10T00:00:00+05:30"), label: "Mahalaya tak bacha hai — 10 October 2026" },
-    { when: new Date("2026-10-16T00:00:00+05:30"), label: "Durga Puja (Maha Shashthi) tak bacha hai — 16 October 2026" },
-    { when: new Date("2026-10-17T00:00:00+05:30"), label: "Maha Saptami tak bacha hai — 17 October 2026" },
-    { when: new Date("2026-10-19T00:00:00+05:30"), label: "Maha Ashtami & Navami tak bacha hai — 19 October 2026" },
-    { when: new Date("2026-10-20T00:00:00+05:30"), label: "Vijaya Dashami tak bacha hai — 20 October 2026" }
-  ];
-  var VISARJAN_END = new Date("2026-10-22T00:00:00+05:30");
-
-  var elDays = document.getElementById("days");
-  var elHours = document.getElementById("hours");
-  var elMins = document.getElementById("mins");
-  var elSecs = document.getElementById("secs");
-  var elHeading = document.getElementById("cdHeading");
-  var elCountdown = document.getElementById("countdown");
-  var elBanner = document.getElementById("festivalBanner");
-
-  function pad(n) { return n < 10 ? "0" + n : String(n); }
-
-  function currentTarget() {
-    var now = new Date();
-    if (now >= VISARJAN_END) return null;
-    var best = null;
-    for (var i = 0; i < TARGETS.length; i++) {
-      if (now < TARGETS[i].when) { best = TARGETS[i]; break; }
-    }
-    return best;
+/* ===== floating petals / embers ===== */
+(function(){
+  var cv=document.getElementById('petals'),cx=cv.getContext('2d'),W,H,P=[];
+  function size(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+  size();addEventListener('resize',size);
+  var COLORS=['rgba(246,196,83,.75)','rgba(255,120,120,.6)','rgba(255,77,94,.5)','rgba(255,233,168,.7)','rgba(230,90,120,.5)'];
+  function mk(init){
+    return {x:Math.random()*W,y:init?Math.random()*H:H+10,
+      r:Math.random()*3+1.2,vy:-(Math.random()*.35+.12),vx:(Math.random()-.5)*.3,
+      a:Math.random()*Math.PI*2,va:(Math.random()-.5)*.03,
+      c:COLORS[Math.random()*COLORS.length|0],
+      ember:Math.random()<.35};
   }
+  for(var i=0;i<44;i++)P.push(mk(true));
+  function draw(){
+    cx.clearRect(0,0,W,H);
+    for(var i=0;i<P.length;i++){var p=P[i];
+      p.y+=p.vy*(p.ember?1.6:1);p.x+=p.vx+Math.sin(p.a)*.35;p.a+=p.va;
+      if(p.y<-12){P[i]=mk(false);}
+      cx.beginPath();
+      cx.fillStyle=p.c;cx.shadowColor=p.c;cx.shadowBlur=p.ember?9:0;
+      if(p.ember){cx.arc(p.x,p.y,p.r*.8,0,7);}
+      else{cx.ellipse(p.x,p.y,p.r,p.r*.55,p.a,0,7);}
+      cx.fill();cx.shadowBlur=0;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 
-  function tick() {
-    var now = new Date();
-    var target = currentTarget();
+/* ===== countdown ===== */
+(function(){
+  var TARGETS=[
+    {when:new Date('2026-10-10T00:00:00+05:30'),label:'Mahalaya tak bacha hai · 10 October 2026'},
+    {when:new Date('2026-10-16T00:00:00+05:30'),label:'Durga Puja · Maha Shashthi tak bacha hai · 16 October 2026'},
+    {when:new Date('2026-10-17T00:00:00+05:30'),label:'Maha Saptami tak bacha hai · 17 October 2026'},
+    {when:new Date('2026-10-19T00:00:00+05:30'),label:'Maha Ashtami & Navami tak bacha hai · 19 October 2026'},
+    {when:new Date('2026-10-20T00:00:00+05:30'),label:'Vijaya Dashami tak bacha hai · 20 October 2026'}
+  ];
+  var START=new Date('2026-10-10T00:00:00+05:30'),
+      END=new Date('2026-10-22T00:00:00+05:30');
 
-    // highlight today's card
-    var todayStr = now.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
-    document.querySelectorAll(".day-card").forEach(function (card) {
-      card.classList.toggle("today", card.getAttribute("data-date") === todayStr);
+  function E(id){return document.getElementById(id)}
+  var d=E('days'),h=E('hours'),m=E('mins'),s=E('secs'),
+      head=E('cdHeading'),cd=E('countdown'),banner=E('festivalBanner'),bar=E('progBar');
+
+  function set(el,v){v=v<10?'0'+v:''+v;if(el.textContent!==v){el.textContent=v;el.classList.remove('pop');void el.offsetWidth;el.classList.add('pop');}}
+
+  function tick(){
+    var now=new Date();
+    var todayStr=now.toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'});
+    document.querySelectorAll('.t-item').forEach(function(t){
+      t.classList.toggle('today',t.getAttribute('data-date')===todayStr);
     });
 
-    if (target === null) {
-      elCountdown.style.display = "none";
-      elHeading.style.display = "none";
-      elBanner.style.display = "block";
-      elBanner.textContent = "Shubho Bijoya! Asche bochhor abar hobe.";
+    var prog=(now-START)/(END-START);
+    bar.style.width=Math.max(0,Math.min(100,prog*100)).toFixed(2)+'%';
+
+    var target=null;
+    if(now<END){for(var i=0;i<TARGETS.length;i++){if(now<TARGETS[i].when){target=TARGETS[i];break;}}}
+
+    if(!target){
+      cd.style.display='none';head.style.display='none';bar.parentElement.parentElement.style.display='none';
+      banner.style.display='block';
+      banner.textContent='Shubho Bijoya! \u0986\u09b8\u099b\u09c7 \u09ac\u099b\u09b0 \u0986\u09ac\u09be\u09b0 \u09b9\u09ac\u09c7.';
       return;
     }
-
-    elHeading.textContent = target.label;
-
-    var diff = target.when - now;
-    if (diff <= 0) return;
-    var s = Math.floor(diff / 1000);
-    elDays.textContent = pad(Math.floor(s / 86400));
-    elHours.textContent = pad(Math.floor((s % 86400) / 3600));
-    elMins.textContent = pad(Math.floor((s % 3600) / 60));
-    elSecs.textContent = pad(s % 60);
+    head.textContent=target.label;
+    var diff=target.when-now,sec=Math.floor(diff/1000);
+    set(d,Math.floor(sec/86400));set(h,Math.floor(sec%86400/3600));
+    set(m,Math.floor(sec%3600/60));set(s,sec%60);
   }
-
-  tick();
-  setInterval(tick, 1000);
+  tick();setInterval(tick,1000);
 })();
 </script>
 </body>
